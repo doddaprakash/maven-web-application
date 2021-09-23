@@ -4,47 +4,31 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>MithunTechnologies- Home Page</title>
-<link href="images/mithunlogo.jpg" rel="icon">
+<title>SmartShift Technologies- Home Page</title>
+<link href="images/logo.jpg" rel="icon">
 </head>
 </head>
 <body>
-<h1 align="center">Welcome to Mithun Software Solutions. Bengaluru </h1>
-<h1 align="center"> Mithun Software Solutions- Very Good Training center for DevOps with AWS in Maratha Halli Bangalore India and also for Job Assitance Job Support also...Teaching Real Time scnerios</h1>
-<hr>
-<br>
-	<h1><h3> Server Side IP Address </h3><br>
+<h1 align="center">Welcome to SmartShift Technologies. Bengaluru </h1>
+<h1 align="center"> SmartShift Technologies- Intelligent Automation for SAP Transformation</h1>
 
-<% 
-String ip = "";
-InetAddress inetAddress = InetAddress.getLocalHost();
-ip = inetAddress.getHostAddress();
-out.println("Server Host Name :: "+inetAddress.getHostName()); 
-%>
-<br>
-<%out.println("Server IP Address :: "+ip);%>
-</h1>
-<hr>
 <div style="text-align: center;">
 	<span>
-		<img src="images/mithunlogo.jpg" alt="" width="100">
+		<img src="images/logo.jpg" alt="" width="100">
 	</span>
 	<span style="font-weight: bold;">
-		Mithun Technologies, 
-		Martha Halli, Above ICICI Bank, Beside Meghana Foods,
+		SmartShift Technologies,
 		Bangalore,
-		+91-9980923226
-		devopstrainingblr@gmail.com
-		<br>
-		<a href="mailto:devopstrainingblr@gmail.com">Mail to Mithun Technologies</a>
+	<br>
+		<a href="mailto:connect@smartshift.com">Mail to SmartShift Technologies</a>
 	</span>
 </div>
 <hr>
 	<p> Service : <a href="services/employee/getEmployeeDetails">Get Employee Details </p>
 <hr>
 <hr>
-<p align=center>Mithun Technologies - Consultant, Training, Development Center.</p>
-<p align=center><small>Copyrights 2019 by <a href="http://mithuntechnologies.com/">Mithun Technologies</a> </small></p>
+<p align=center>SmartShift Technologies - AP Transformations do not need to be complex, risky, and time/resource consuming! Hundreds of SAP customers worldwide including BMW, Airbus, and P&G trust smartShift’s Intelligent Automation Platform for SAP S/4HANA transformations, system consolidations, carve-outs, application modernization and cloud transformations.</p>
+<p align=center><small>Copyrights 2019 by <a href="http://SmartShifttechnologies.com/">SmartShift Technologies</a> </small></p>
 
 </body>
 </html>
