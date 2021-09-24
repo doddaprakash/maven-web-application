@@ -1,51 +1,48 @@
-node('wallmart-node'){
+pipeline {
+    agent any
 
- def mavenHome = tool name: "maven3.8.2"
- 
-       echo "GitHub BranhName ${env.BRANCH_NAME}"
-       echo "Jenkins Job Number ${env.BUILD_NUMBER}"
-       echo "Jenkins Node Name ${env.NODE_NAME}"
-  
-       echo "Jenkins Home ${env.JENKINS_HOME}"
-       echo "Jenkins URL ${env.JENKINS_URL}"
-       echo "JOB Name ${env.JOB_NAME}"
+    stages {
+        stage('Build') {
+            steps {
+                // Get some code from a GitHub repository
+                git credentialsId: 'git-cred', url: 'https://github.com/doddaprakash/maven-web-application.git'
 
- stage('CheckOutCode')
- {
- git branch: 'development', credentialsId: '12993250-1ff3-40a0-9978-794e74dcf712', url: 'https://github.com/MithunTechnologiesDevOps/maven-web-application.git'
- }
- 
- stage('Build')
- {
-  sh "${mavenHome}/bin/mvn clean package"
- }
+                // Run Maven on a Unix agent.
+                //sh "mvn -Dmaven.test.failure.ignore=true clean package"
 
-/*
- stage('SonarQubeReport'){
- sh "${mavenHome}/bin/mvn clean sonar:sonar"
- }
- 
- 
- stage('UploadArtifactIntoNexus'){
- sh "${mavenHome}/bin/mvn clean deploy"
- }
- 
- stage('DeployAppIntoTomcatServer')
- {
- sshagent(['c7a7b3d8-55f0-4f83-9e81-d56c154cc647']) {
-  sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@15.206.90.6:/opt/apache-tomcat-9.0.52/webapps/"
- }
- }
- 
- */
- 
- stage('SendEmailNotification'){
-   emailext body: '''Build is over !!
-
-   Regards,
-   Mithun Technologies,
-   9980923226''', subject: 'Build Over... !!', to: 'devopstrainingblr@gmail.com'
- }
- 
- 
+                // To run Maven on a Windows agent, use
+                // bat "mvn -Dmaven.test.failure.ignore=true clean package"
+                    script{
+                        withSonarQubeEnv('Sonar'){
+                            sh "mvn clean sonar:sonar"
+                        }
+                    }
+                
+            }
+         stage('Sonar-Analysis') {
+            steps {
+                  script{
+                        withSonarQubeEnv('Sonar'){
+                            sh "mvn clean sonar:sonar"
+                        }
+                    }
+                
+            }
+          stage('Create Package') {
+            steps {
+                // Run Maven on a Unix agent.
+                sh "mvn -Dmaven.test.failure.ignore=true clean package"
+                archiveArtifacts 'target/*.war'
+                        }
+                    }
+                
+            }
+         stage('Create Package') {
+            steps {
+                sshagent(['tomcat']) {
+                        sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war prakashdodda24@35.244.63.222:/opt/tomcat/apache-tomcat-8.5.71/webapps/web-app.war"
+                    }
+                }
+            }
+    }
 }
