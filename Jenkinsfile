@@ -10,8 +10,7 @@ pipeline {
                     
             }
          stage('Sonar-Analysis') {
-            steps {
-				sh "echo 
+            steps { 
                   script{
 					echo "Sonar is having issue with Sonar dependency"
                     //    withSonarQubeEnv('Sonar'){
